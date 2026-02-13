@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>for my favorite person ♡</title>
+
+<style>
+body{
+margin:0;
+font-family:"Times New Roman", Times, serif;
+background:linear-gradient(135deg,#ff4d6d,#ff8fab,#ffc2d1);
+overflow:hidden;
+color:white;
+}
+
+.slide{
+position:absolute;
+width:100%;
+height:100vh;
+display:flex;
+flex-direction:column;
+justify-content:center;
+align-items:center;
+text-align:center;
+left:100%;
+transition:1s;
+padding:20px;
+}
+
+.active{left:0;}
+
+h1{
+font-size:40px;
+margin:10px;
+letter-spacing:1px;
+}
+
+p{
+font-size:18px;
+max-width:340px;
+line-height:1.6;
+}
+
+button{
+margin-top:20px;
+padding:12px 26px;
+border:none;
+border-radius:30px;
+background:white;
+color:#ff4d6d;
+font-size:16px;
+cursor:pointer;
+transition:.3s;
+font-family:"Times New Roman", Times, serif;
+}
+
+button:hover{
+transform:scale(1.1);
+background:#ff4d6d;
+color:white;
+}
+
+img{
+width:240px;
+height:310px;
+object-fit:cover;
+border-radius:20px;
+margin:15px;
+box-shadow:0 0 25px rgba(0,0,0,0.3);
+}
+
+.choice button{
+display:block;
+margin:10px auto;
+width:220px;
+}
+
+.star{
+position:fixed;
+top:-20px;
+font-size:18px;
+animation:fall linear forwards;
+}
+
+@keyframes fall{
+to{transform:translateY(110vh);opacity:0;}
+}
+</style>
+</head>
+<body>
+
+<div class="slide active">
+<h1>for my favorite person 💗</h1>
+<p>this little page is specially made for you and only you ✨</p>
+<button onclick="next()">open message 💌</button>
+</div>
+
+<div class="slide">
+<h1>mini riddle 😆</h1>
+<p>
+dia ga bisa dilihat tapi bisa dirasain,<br>
+ga bisa disentuh tapi bikin hangat,<br>
+selalu muncul tiap kamu deket aku.<br>
+what is it?
+</p>
+
+<div class="choice">
+<button onclick="wrong()">matahari</button>
+<button onclick="next()">my feelings for you 💞</button>
+<button onclick="wrong()">awan</button>
+</div>
+</div>
+
+<div class="slide">
+<h1>yeay correct 🥺</h1>
+<p>
+yes it's my feelings 💗<br><br>
+because honestly...<br>
+perasaan ini selalu ada tiap aku sama kamu 🤍
+</p>
+<button onclick="next()">continue →</button>
+</div>
+
+<div class="slide">
+<h1>memories 📸</h1>
+
+<img id="photo" src="en.jpg">
+
+<p id="caption">for the first time we sc 🫶</p>
+
+<div>
+<button onclick="prevPic()">⬅</button>
+<button onclick="nextPic()">➡</button>
+</div>
+
+<button onclick="next()">next page ♡</button>
+</div>
+
+<div class="slide">
+<h1>little note 💌</h1>
+<p>
+makasih ya udah jadi bagian cerita aku ❤️<br>
+i may not always say it, but i really appreciate
+every little thing you do for me, cara kamu
+perhatian, cara kamu sabar, dan semua effort yg kamu
+kasi buat aku itu semua bikin aku ngerasa lucky
+banget punya kamu dan kalo someday kamu cape,
+remember i always here for u ✨<br><br>
+please stay this sweet ya 🤍
+</p>
+
+<button onclick="next()">next →</button>
+</div>
+
+<div class="slide">
+<h1>choose one 😳</h1>
+
+<button onclick="alert('you are my safe place 🤍')">tap this</button>
+<button onclick="alert('i love u more than anything 💗')">or this</button>
+<button onclick="alert('samaa dedee teruss yaa 💞')">maybe this</button>
+
+<button onclick="next()">last page →</button>
+</div>
+
+<div class="slide">
+<h1>i love you 💞</h1>
+<p>more every single day ♡</p>
+<button onclick="stars()">tap many times ✨</button>
+</div>
+
+<script>
+let index=0;
+let slides=document.querySelectorAll(".slide");
+
+function next(){
+slides[index].classList.remove("active");
+index++;
+slides[index].classList.add("active");
+}
+
+function wrong(){
+alert("hehe wrong answer 😝 try again yaa");
+}
+
+let photos=["an.jpg","in.png","un.jpg"];
+let captions=[
+"one of my fav moments 🫶",
+"you + me = ❤️",
+"wish this moment lasted forever ✨"
+];
+
+let p=0;
+
+function nextPic(){
+p=(p+1)%photos.length;
+photo.src=photos[p];
+caption.innerText=captions[p];
+}
+
+function prevPic(){
+p=(p-1+photos.length)%photos.length;
+photo.src=photos[p];
+caption.innerText=captions[p];
+}
+
+function stars(){
+for(let i=0;i<30;i++){
+let s=document.createElement("div");
+s.className="star";
+s.innerHTML="💖";
+s.style.left=Math.random()*100+"vw";
+s.style.animationDuration=(Math.random()*3+2)+"s";
+document.body.appendChild(s);
+setTimeout(()=>s.remove(),5000);
+}
+}
+</script>
+
+</body>
+</html>
